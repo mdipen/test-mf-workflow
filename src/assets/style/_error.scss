@@ -1,0 +1,43 @@
+// Added this file to load error styles(Manikiran)
+$error-code: #042550;
+$error-heading: #828282;
+$error-desc: #cdced0;
+
+.error-screen-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    .error-img {
+        height: 224px;
+        width: 224px;
+        margin-bottom: 12px;
+    }
+    .error-code {
+        font-family: $font-bold;
+        font-size: toRem(36);
+        color: $error-code;
+        margin-bottom: 0;
+        line-height: 49px;
+        margin-top: 20px;
+    }
+    .error-heading {
+        font-family: $font-semi-bold;
+        font-size: toRem(24);
+        max-width: 472px;
+        text-align: center;
+        color: $error-heading;
+        line-height: 33px;
+        margin-bottom: 10px;
+    }
+    .error-desc {
+        font-family: $font-regular;
+        font-size: toRem(16);
+        max-width: 472px;
+        text-align: center;
+        color: $error-desc;
+        margin-bottom: 24px;
+        line-height: 22px;
+    }
+}

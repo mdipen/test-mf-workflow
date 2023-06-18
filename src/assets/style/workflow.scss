@@ -1,0 +1,1334 @@
+@import './mixins';
+@import './variables';
+@import './checkbox';
+@import './modal';
+@import './error';
+@import './form';
+@import './loader';
+// @import './ingram-cloud';
+body {
+    font-family: $font-regular;
+}
+html,
+body,
+#workflow_root,
+.workflow-content,
+.workflow-page-container {
+    height: 100%;
+}
+.workflow-page-container {
+    margin-top: 74px;
+    &.scroll-shadow {
+        .wf-top-header {
+            box-shadow: 0 4px 2px -2px rgb(0 0 0 / 20%);
+        }
+    }
+}
+.primary-btn {
+    display: inline-block;
+    border: 0;
+    background: $secondary;
+    color: #fff;
+    font-size: toRem(12);
+    padding: 8px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: $font-semi-bold;
+    transition: all 0.3s ease;
+    &:hover {
+        background: $secondary-light;
+        color: $white;
+    }
+    &.btn-small {
+        border-radius: 2px;
+        font-size: toRem(10);
+        padding: 4px 5px;
+    }
+    &[disabled] {
+        background: #eaeaea;
+        color: #8a8a8a;
+        pointer-events: none;
+    }
+}
+.primary-outline-btn {
+    display: inline-block;
+    border: 1px solid $secondary;
+    background: transparent;
+    color: $secondary;
+    font-size: toRem(12);
+    padding: 7px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: $font-semi-bold;
+    transition: all 0.3s ease;
+    &:hover {
+        background: $secondary;
+        color: $white;
+    }
+    &.btn-small {
+        border-radius: 2px;
+        font-size: toRem(10);
+        padding: 4px 5px;
+    }
+    &[disabled] {
+        background: #eaeaea;
+        color: #8a8a8a;
+        pointer-events: none;
+        border: 0;
+    }
+    &.disabled {
+        background: #eaeaea;
+        color: #8a8a8a;
+        pointer-events: none;
+        border: 0;
+    }
+}
+.secondary-btn {
+    display: inline-block;
+    border: 1px solid #8d8d8d;
+    background: transparent;
+    color: #444444;
+    font-family: $font-semi-bold;
+    font-size: toRem(12);
+    padding: 8px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    &:hover {
+        color: #8d8d8d;
+    }
+    &.btn-small {
+        border-radius: 2px;
+        font-size: toRem(10);
+        padding: 4px 5px;
+    }
+    &.disabled {
+        background: #eaeaea;
+        color: #8a8a8a;
+        pointer-events: none;
+        border: 0;
+    }
+}
+
+$columns: 10;
+
+@for $i from 1 through $columns {
+    .mb-#{$i*4} {
+        margin-bottom: ($i * 4) + px;
+    }
+}
+
+// header css start
+.wf-top-header {
+    @include flexconfig($align-items: center);
+    height: $header-height;
+    padding: 6px 30px;
+    background-color: $primary;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+.wf-header-first-logo {
+    height: 36px;
+    margin-right: 24px;
+    img,
+    svg {
+        height: 100%;
+        width: auto;
+    }
+}
+.wf-header-second-logo {
+    height: 36px;
+    img,
+    svg {
+        height: 100%;
+        width: auto;
+    }
+}
+.wf-top-header-label {
+    color: $white;
+    font-size: toRem(16);
+    margin-left: 34px;
+}
+// header css start
+
+// .workflow-user-menu {
+//     @include flexconfig($align-items: center);
+//     margin-left: auto;
+// }
+// .partner-logo {
+//     margin-right: 34px;
+//     img {
+//         height: 36px;
+//     }
+// }
+// .workflow-logo {
+//     @include flexconfig($align-items: center);
+//     img {
+//         height: $header-logo-height;
+//     }
+// }
+// .workflow-user-logo {
+//     display: inline-block;
+//     height: 32px;
+//     width: 32px;
+//     background-color: #fffefe;
+//     border-radius: 25px;
+// }
+.workflow-section {
+    padding: 30px 0 58px;
+    position: relative;
+    border-bottom: 1px solid $secondary;
+    // margin-top: 74px;
+}
+.workflow-container {
+    position: relative;
+}
+.workflow-svg-bottom {
+    position: absolute;
+    bottom: 28px;
+    left: 0;
+}
+.workflow-svg-top {
+    position: absolute;
+    top: -20px;
+    right: 0;
+}
+.wf-back-home-wrapper {
+    display: flex;
+    margin-bottom: 12px;
+}
+.wf-back-home {
+    margin-left: auto;
+    color: $primary;
+    border: 1px solid $primary;
+    text-decoration: none;
+    padding: 5px 8px;
+    cursor: pointer;
+    font-size: toRem(14);
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    &:hover {
+        color: $white;
+        background-color: $primary;
+    }
+}
+.wf-header-name {
+    text-align: center;
+    color: $primary;
+    font-size: toRem(36);
+    font-family: $font-bold;
+    margin-bottom: 24px;
+}
+.wf-header-description {
+    text-align: center;
+    line-height: 32px;
+    font-family: $font-regular;
+    font-size: toRem(16);
+    color: #444444;
+    max-width: 944px;
+    margin: 0 auto 32px;
+}
+
+.workflow-info-card-wrapper {
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 32px;
+    position: relative;
+    background-image: url('../images/info-card-bg.png');
+}
+.workflow-info-card-overlay {
+    @include flexconfig(
+        $align-items: flex-start,
+        $justify-content: center,
+        $flex-wrap: wrap
+    );
+    padding: 45px 16px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.workflow-info-card-inner {
+    @include flexconfig(
+        $align-items: flex-start,
+        $justify-content: center,
+        $flex-wrap: wrap
+    );
+    background-color: $white;
+    position: relative;
+    max-width: 1008px;
+}
+.workflow-info-card {
+    border-radius: 4px;
+    padding: 45px 32px;
+    flex: 1;
+    min-height: 240px;
+    max-width: 336px;
+    position: relative;
+    .workflow-info-card-title {
+        font-size: toRem(16);
+        line-height: 22px;
+        color: $primary;
+        text-transform: uppercase;
+        font-family: $font-bold;
+        margin-bottom: 8px;
+    }
+    .workflow-info-card-des {
+        font-size: toRem(12);
+        line-height: 24px;
+        color: $black;
+        font-family: $font-regular;
+        margin-bottom: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 5; /* number of lines to show */
+        -webkit-box-orient: vertical;
+    }
+    &:before {
+        content: '';
+        position: absolute;
+        width: 1px;
+        height: 170px;
+        background-color: #dddddd;
+        right: -9px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    &:last-child {
+        &:before {
+            display: none;
+        }
+    }
+}
+
+// Resource details section start
+
+.wf-resource-section {
+    @include flexconfig($align-items: center);
+    background-color: #eaeaea;
+    padding: 23px 36px;
+    // box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+    margin: 0 0 36px 0;
+}
+.workflow-resource-info {
+    @include flexconfig($flex-direction: column);
+    margin-right: 10px;
+}
+.wf-resource-header {
+    font-size: toRem(18);
+    color: $primary;
+    font-family: $font-bold;
+    margin-bottom: 8px;
+}
+.wf-resource-description {
+    font-size: toRem(14);
+    color: $black;
+    font-family: $font-regular;
+}
+.wf-resource-button {
+    border: 0;
+    border-radius: 4px;
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: $secondary;
+    color: $white;
+    text-transform: uppercase;
+    transition: all 0.5s ease;
+    white-space: nowrap;
+    font-size: toRem(16);
+    font-family: $font-bold;
+    padding: 16px 16px;
+    &:hover {
+        background-color: darken($secondary, 10%);
+        color: darken($white, 10%);
+        svg {
+            color: darken($white, 10%);
+        }
+    }
+    svg {
+        margin-left: 10px;
+        height: 28px;
+        width: 28px;
+    }
+}
+.download-icon-wrap {
+    height: 28px;
+    width: auto;
+    img {
+        height: 100%;
+        width: auto;
+        margin-left: 10px;
+    }
+    svg {
+        height: 100%;
+        width: auto;
+        margin-left: 10px;
+    }
+}
+// Resource details section END
+
+// rewards details section start
+.wf-rewards-section {
+    max-width: 300px;
+    margin: 0 auto 36px;
+
+    .wf-rewards-button-area {
+        display: flex;
+        align-items: center;
+        background-color: #2c6fc4;
+        padding: 10px 10px 10px 20px;
+        img {
+            height: auto;
+            width: 60px;
+        }
+    }
+    span.wf-rewards-button {
+        color: #fff;
+        font-size: 19px;
+        font-family: 'OpenSansSemiBold', 'Helvetica', 'Arial', sans-serif !important;
+    }
+
+    .wf-rewards-points-area {
+        background-color: #e56798;
+        text-align: center;
+        color: #fff;
+        padding: 3px 0;
+        font-family: 'OpenSansSemiBold', 'Helvetica', 'Arial', sans-serif !important;
+    }
+}
+// rewards details section END
+
+// Milestone slider card section Start
+.wf-milestone-card-container {
+    padding: 0;
+}
+.wf-milestone-header {
+    color: $primary;
+    font-family: $font-bold;
+    font-size: toRem(28);
+    text-align: center;
+    margin-bottom: 45px;
+    line-height: 38px;
+    text-transform: uppercase;
+}
+.wf-milestone-block {
+    height: 260px;
+    // min-width: 236px;
+    // max-width: 236px;
+    background: #ffffff;
+    box-sizing: border-box;
+    box-shadow: rgb(9 30 66 / 25%) 0px 4px 8px -2px,
+        rgb(9 30 66 / 8%) 0px 0px 0px 1px;
+    padding: 24px 24px;
+    @include flexconfig(
+        $flex-direction: column,
+        $justify-content: space-between
+    );
+    transform: scale(1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    &:hover {
+        background: $secondary-light;
+        transform: scale(1.1);
+        .wf-milestone-block-name {
+            color: $white;
+        }
+        .wf-milestone-block-info {
+            color: $white;
+        }
+        .wf-milestone-block-count {
+            color: $white;
+        }
+        .wf-milestone-block-description {
+            color: $white;
+        }
+        .wf-milestone-block-title {
+            color: $white;
+        }
+        .wf-milestone-block-button {
+            background-color: $white;
+            color: $secondary;
+            border: 0;
+        }
+        .wf-milestone-block-link {
+            color: $white;
+        }
+        .wf-milestone-block-status {
+            background-color: $white;
+            color: $secondary-light;
+        }
+    }
+    &.wf-active {
+        border: 2px solid $secondary-light;
+        .wf-milestone-block-button {
+            background: $secondary;
+            color: $white;
+            border: 0;
+        }
+        &:hover {
+            .wf-milestone-block-button {
+                background: #fff;
+                color: $secondary;
+                border: 0;
+            }
+        }
+    }
+    &.click-active {
+        background: $secondary-light;
+        transform: scale(1.1);
+        .wf-milestone-block-name {
+            color: $white;
+        }
+        .wf-milestone-block-info {
+            color: $white;
+        }
+        .wf-milestone-block-count {
+            color: $white;
+        }
+        .wf-milestone-block-description {
+            color: $white;
+        }
+        .wf-milestone-block-title {
+            color: $white;
+        }
+        .wf-milestone-block-button {
+            background: #00ab86;
+            color: $white;
+            border: 0;
+        }
+        .wf-milestone-block-link {
+            color: $white;
+        }
+        .wf-milestone-block-status {
+            background-color: $white;
+            color: $secondary-light;
+        }
+    }
+}
+.wf-milestone-block-wrap {
+    @include flexconfig($align-items: center, $justify-content: space-between);
+}
+.wf-milestone-block-status {
+    margin-left: 10px;
+    color: $white;
+    font-family: $font-semi-bold;
+    font-size: toRem(10);
+    padding: 4px 4px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    // margin-bottom: 13px;
+    white-space: nowrap;
+    &.completed {
+        background-color: $status-completed;
+    }
+    &.inProgress {
+        background-color: $status-inProgress;
+    }
+    &.notStarted {
+        background-color: $status-notStarted;
+    }
+}
+.wf-milestone-block-name {
+    color: #606060;
+    font-size: toRem(14);
+    font-family: $font-bold;
+    text-transform: uppercase;
+    // margin-bottom: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.wf-milestone-block-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // margin-bottom: 16px;
+}
+.wf-milestone-block-count {
+    font-size: toRem(24);
+    color: #0773bb;
+    font-family: $font-bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+}
+.wf-milestone-block-description {
+    font-size: toRem(14);
+    color: #0773bb;
+    font-family: $font-semi-bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    text-align: center;
+
+    // padding: 5px 0;
+}
+.wf-milestone-block-title {
+    font-size: toRem(16);
+    color: $black;
+    font-family: $font-semi-bold;
+    // white-space: nowrap;
+    // overflow: hidden;
+    // text-overflow: ellipsis;
+    width: 100%;
+    // text-align: center;
+    // display: -webkit-box;
+    // -webkit-box-orient: vertical;
+    // -webkit-line-clamp: 2;
+    // overflow: hidden;
+    // padding: 5px 0;
+    height: 48px;
+    position: relative;
+    @include flexconfig($align-items: center, $justify-content: center);
+}
+.wf-milestone-block-title-ellipse {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.wf-milestone-block-link {
+    text-align: center;
+    text-decoration: none;
+    color: $secondary;
+    font-family: $font-bold;
+    font-size: toRem(12);
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+    &:hover {
+        color: darken($secondary, 10%);
+    }
+}
+.wf-milestone-block-button {
+    display: block;
+    margin: 0 auto;
+    font-size: toRem(14);
+    text-transform: uppercase;
+    font-family: $font-semi-bold;
+    border-radius: 0;
+    border: 1px solid #00ab86;
+    background: transparent;
+    color: #00ab86;
+    padding: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    transition: all 0.3s ease;
+    &:hover {
+        background: darken($secondary, 10%);
+        color: $white;
+    }
+}
+// Milestone slider card section End
+
+// Milestone Deatils Section START
+.wf-milestone-details-container.container {
+    position: relative;
+    padding-bottom: 86px;
+    z-index: 1;
+}
+.wf-milestone-details-card {
+    background-color: $white;
+    padding: 50px 70px;
+}
+.wf-milestone-details-heading-wrap {
+    @include flexconfig($align-items: center);
+    margin-bottom: 45px;
+}
+.wf-milestone-details-heading {
+    font-family: $font-bold;
+    color: $primary;
+    font-size: toRem(18);
+    text-transform: uppercase;
+}
+.wf-milestone-details-list-wrap {
+    margin-left: auto;
+}
+.wf-milestone-details-list {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+.wf-milestone-details-tab {
+    list-style: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    color: #666666;
+    margin-right: 4px;
+    font-family: $font-semi-bold;
+    font-size: toRem(12);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    &:hover {
+        color: $secondary;
+    }
+    &.active {
+        background: $secondary;
+        color: $white;
+    }
+    &:last-child {
+        margin-right: 0;
+    }
+}
+.wf-milestone-details-section {
+    // height: 300px;
+    background: #f8f8f8;
+    padding-top: 52px;
+    position: relative;
+}
+.wf-milestone-inner-img {
+    width: 100%;
+    height: 240px;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+.wf-milestone-inner-heading {
+    width: calc(100% - 388px);
+    color: #444444;
+    font-size: toRem(18);
+    font-family: $font-bold;
+    margin-bottom: 12px;
+    line-height: 22px;
+}
+.wf-milestone-inner-description {
+    font-size: toRem(12);
+    line-height: 20px;
+    color: $black;
+}
+.wf-milestone-inner-list-heading {
+    color: #222222;
+    font-size: toRem(14);
+    font-family: $font-bold;
+    margin-bottom: 8px;
+}
+.wf-milestone-inner-item {
+    font-size: toRem(12);
+    margin-bottom: 8px;
+    color: #222222;
+}
+.wf-milestone-inner-content-wrap {
+    @include flexconfig($align-items: flex-start);
+}
+.wf-milestone-inner-content {
+    margin-right: 64px;
+}
+.wf-leg-card-heading {
+    color: $primary;
+    font-family: $font-bold;
+    font-size: toRem(14);
+    margin-bottom: 12px;
+}
+.wf-leg-card-wrap {
+    width: 100%;
+    max-width: 324px;
+    min-width: 324px;
+    height: 520px;
+    max-height: 630px;
+    margin-left: auto;
+}
+.wf-unlock-label {
+    color: $white;
+    font-family: $font-semi-bold;
+    font-size: toRem(10);
+    background-color: #f2994a;
+    text-align: center;
+    padding: 4px 4px;
+}
+.wf-leg-card {
+    background: #f5f5f5;
+    border-radius: 4px;
+    padding: 16px 24px 0;
+    overflow: hidden;
+    height: calc(100% - 40px);
+}
+.wf-leg-card-progress-wrap {
+    margin-bottom: 16px;
+    .progress {
+        height: 6px;
+        border-radius: 4px;
+    }
+}
+.wf-leg-card-progress-bar {
+    .progress-bar {
+        background-color: $primary;
+    }
+}
+.wf-leg-card-progress-info {
+    @include flexconfig($align-items: center);
+}
+.wf-leg-card-progress-info-label {
+    color: $black;
+    font-family: $font-regular;
+    font-size: toRem(12);
+    margin-bottom: 4px;
+    text-transform: capitalize;
+}
+.wf-leg-card-progress-info-count {
+    margin-left: auto;
+    color: $black;
+    font-family: $font-regular;
+    font-size: toRem(12);
+    margin-bottom: 4px;
+}
+.wf-leg-list-card-wrap {
+    height: 100%;
+    margin: 0 -16px;
+}
+.wf-leg-list-card {
+    background-color: #fff;
+    padding: 10px;
+    margin: 0 16px 10px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    &:hover {
+        border: 1px solid $secondary;
+    }
+    &.disabled {
+        pointer-events: none;
+        opacity: 0.7;
+    }
+    &.active {
+        border: 1px solid $secondary;
+    }
+}
+.wf-leg-list-card-title {
+    color: $black;
+    font-family: $font-regular;
+    font-size: toRem(12);
+    margin-bottom: 8px;
+}
+.wf-leg-list-card-status {
+    white-space: nowrap;
+    margin-left: auto;
+    color: $white;
+    font-family: $font-semi-bold;
+    font-size: toRem(8);
+    padding: 4px 4px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    &.completed {
+        background-color: $status-completed;
+    }
+    &.inProgress {
+        background-color: $status-inProgress;
+    }
+    &.notStarted {
+        background-color: $status-notStarted;
+    }
+}
+.wf-leg-list-card-action {
+    @include flexconfig($align-items: center);
+    .checkbox-toggle-wrap {
+        margin-left: auto;
+    }
+    .primary-btn {
+        font-size: toRem(8);
+        text-transform: uppercase;
+        background-color: $badge-color;
+        color: #406f64;
+    }
+}
+.wf-leg-list-card-btn {
+    border: 0;
+    text-transform: uppercase;
+    background: #c1ece3;
+    color: #444444;
+    font-size: toRem(8);
+    padding: 4px 4px;
+    border-radius: 2px;
+    margin-right: 7px;
+    font-family: $font-semi-bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.wf-leg-list-card-extra-labels-btn{
+  overflow: visible;
+}
+.wf-leg-list-cta-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 4px;
+    padding: 10px;
+    margin: 15px auto;
+    cursor: pointer;
+
+    max-width: 260px;
+    min-height: 36px;
+
+    color: rgba(64, 88, 255, 0.5);
+    background: #fff;
+    border: 1px solid rgba(64, 88, 255, 0.5);
+
+    &.wf-leg-list-last-cta-card {
+        background: #4058ff;
+        color: #fff;
+    }
+}
+
+// task rewards Deatils Section
+.wf-task-completed-by-other-user-btn {
+    border: 0;
+    background: #dddddd;
+    color: #666666;
+    font-size: toRem(8);
+    padding: 4px 4px;
+    border-radius: 2px;
+    margin-right: 7px;
+    font-family: $font-semi-bold;
+    white-space: nowrap;
+    text-transform: lowercase;
+    .right-mark-icon {
+        display: inline-block;
+        margin-right: 2px;
+    }
+}
+.wf-task-completed-by-current-user-btn {
+    border: 0;
+    background: #b1df83;
+    color: #2a5f18;
+    font-size: toRem(8);
+    padding: 4px 4px;
+    border-radius: 2px;
+    margin-right: 7px;
+    font-family: $font-semi-bold;
+    white-space: nowrap;
+    text-transform: lowercase;
+    .right-mark-icon {
+        color: #2a5f18;
+        display: inline-block;
+        margin-right: 2px;
+    }
+}
+
+.wf-task-not-completed-btn {
+    border: 0;
+    background: #ffd668;
+    color: #000000;
+    font-size: toRem(8);
+    padding: 4px 4px;
+    border-radius: 2px;
+    margin-right: 7px;
+    font-family: $font-semi-bold;
+    white-space: nowrap;
+    text-transform: lowercase;
+    .star-mark-icon {
+        display: inline-block;
+        margin-right: 2px;
+        position: relative;
+        top: -1px;
+    }
+}
+
+// task rewards Deatils Section
+
+// Milestone Deatils Section END
+
+.mark-complete-btn-wrap {
+    display: flex;
+    justify-content: flex-end;
+}
+.mark-complete-btn {
+    display: block;
+    width: 100%;
+    border: 0;
+    background: $secondary;
+    color: $white;
+    font-size: toRem(12);
+    padding: 7px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-left: auto;
+    font-family: $font-semi-bold;
+    transition: all 0.3s ease;
+    &:hover {
+        background: $secondary-light;
+    }
+    &[disabled] {
+        border-color: transparent;
+        background: #eaeaea;
+        color: #606060;
+    }
+}
+.milestone-main-wrapper {
+    padding: 48px;
+    height: calc(100% - 48px);
+    @include flexconfig($align-items: flex-start);
+}
+.milestone-label {
+    margin-bottom: 20px;
+    color: $black;
+    font-family: $font-semi-bold;
+    font-size: toRem(16);
+    height: 20px;
+}
+
+.temp-class {
+    border: 1px solid #7e76f0;
+    padding: 20px;
+    margin-bottom: 0.5rem;
+}
+.customLeftArrow {
+    display: inline-block;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    position: absolute;
+    right: 50px;
+    bottom: 2px;
+    cursor: pointer;
+    &:hover {
+        opacity: 0.8;
+    }
+}
+.customRightArrow {
+    display: inline-block;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    position: absolute;
+    right: 1px;
+    bottom: 2px;
+    cursor: pointer;
+    &:hover {
+        opacity: 0.8;
+    }
+}
+.react-multi-carousel-list.carousel-workflow-slider {
+    width: 100%;
+    // width: calc(100% + 60px);
+    padding: 20px 1px 80px;
+
+    // .react-multi-carousel-track {
+    //     // padding: 0 20px;
+    //     justify-content: center;
+    // }
+    max-width: 1008px;
+    // margin: 0 auto;
+    .react-multiple-carousel__arrow {
+        background-color: $secondary;
+        &.react-multiple-carousel__arrow--left {
+            right: 65px;
+            left: unset;
+            bottom: 0px;
+            height: 36px;
+            width: 36px;
+            min-width: 36px;
+            min-height: 36px;
+        }
+        &.react-multiple-carousel__arrow--right {
+            right: 20px;
+            left: unset;
+            bottom: 0px;
+            height: 36px;
+            width: 36px;
+            min-width: 36px;
+            min-height: 36px;
+        }
+    }
+    // .react-multi-carousel-track {
+    //     // width: 100%;
+    // }
+    .react-multi-carousel-item {
+        max-width: 240px !important;
+        width: 240px !important;
+        min-width: 240px !important;
+
+        margin-right: 14px;
+        .wf-milestone-block {
+            width: 100%;
+        }
+        // &:last-child {
+        //     .workflow-leg-card {
+        //         width: 100%;
+        //     }
+        // }
+    }
+}
+
+.footer-svg-wrap {
+    position: absolute;
+    right: 0;
+    bottom: 16px;
+}
+
+.workflow-footer {
+    @include flexconfig(
+        $align-items: center,
+        $justify-content: center,
+        $flex-wrap: wrap
+    );
+    background-color: #606060;
+    min-height: 120px;
+    padding: 10px 16px;
+}
+.footer-first-logo {
+    margin-right: 34px;
+    height: 36px;
+    img,
+    svg {
+        height: 100%;
+        width: auto;
+    }
+}
+.footer-second-logo {
+    margin-right: 34px;
+    height: 22px;
+    img,
+    svg {
+        height: 100%;
+        width: auto;
+    }
+}
+.footer-workflow-label {
+    max-width: 600px;
+    color: $white;
+    font-size: toRem(12);
+}
+
+.popover.popover-hover-card {
+    padding: 20px;
+    max-width: 270px;
+    min-width: 270px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    h6 {
+        color: $primary;
+        font-family: $font-semi-bold;
+        font-size: toRem(14);
+        // border-bottom: 1px solid #e2e2e2;
+        padding-bottom: 7px;
+        margin-bottom: 0;
+    }
+    ul {
+        padding: 0;
+        margin: 0;
+        li {
+            list-style-type: none;
+            color: #222222;
+            font-size: toRem(10);
+            border-bottom: 1px solid #e2e2e2;
+            padding: 7px 0;
+            line-height: 16px;
+            &:last-child {
+                border-bottom: 0;
+                padding-bottom: 0;
+            }
+        }
+    }
+}
+
+.workflow-dropzone {
+    background: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    margin-bottom: 16px;
+    p {
+        margin-bottom: 4px;
+        color: $secondary;
+        font-family: $font-semi-bold;
+        font-size: toRem(12);
+    }
+    .file-dialog-btn {
+        display: inline-block;
+        border: 0;
+        background: $secondary;
+        color: $white;
+        padding: 8px 10px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-family: $font-semi-bold;
+        font-size: toRem(12);
+        transition: all 0.3s ease;
+        &:hover {
+            background: $secondary-light;
+        }
+    }
+    &.disabled {
+        background: #f2f2f2;
+        pointer-events: none;
+        p {
+            color: #c2c2c2;
+        }
+        .file-dialog-btn {
+            background: #cecece;
+        }
+    }
+}
+.upload-submit {
+    display: inline-block;
+    border: 0;
+    background: $secondary;
+    color: $white;
+    padding: 8px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: $font-semi-bold;
+    font-size: toRem(12);
+    margin-bottom: 16px;
+    transition: all 0.3s ease;
+    &:hover {
+        background: $secondary-light;
+    }
+    &[disabled] {
+        background: #eaeaea;
+        color: #8a8a8a;
+    }
+}
+
+/// dropzone css
+.dropzone-file-name-wrap {
+    @include flexconfig($align-items: center);
+    margin-bottom: 20px;
+}
+
+.dropzone-file-name {
+    color: #0773bb;
+    font-size: 12px;
+}
+button.dropzone-file-remove {
+    border: 0;
+    background: transparent;
+    margin-left: 10px;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+        height: 12px;
+        width: 12px;
+        min-width: 12px;
+    }
+    &:hover {
+        background: #e1e1e1;
+    }
+}
+
+///
+.download-component {
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    border: 0;
+    background: $secondary;
+    color: #fff;
+    font-size: toRem(12);
+    padding: 8px 10px;
+    margin-right: 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: $font-semi-bold;
+    transition: all 0.3s ease;
+    &:hover {
+        background: $secondary-light;
+        color: $white;
+    }
+    &.disabled {
+        background: #eaeaea;
+        color: #8a8a8a;
+        pointer-events: none;
+    }
+}
+
+.Toastify__toast-body {
+    color: #4d4d4d;
+    font-size: toRem(14);
+}
+
+#mainNav {
+    display: flex;
+    padding: 0 30px;
+    box-shadow: 0px 3px 3px #ddd;
+}
+
+#TabList {
+    display: flex;
+    width: 100%;
+    flex-direction: initial;
+    align-items: flex-start;
+    position: relative;
+    z-index: 1;
+    .sw-tab {
+        list-style: none;
+        position: relative;
+        margin-right: 15px;
+        a {
+            display: inline-block;
+            color: #141414;
+            text-decoration: none;
+            padding: 15px 0;
+            font-size: 16px;
+            position: relative;
+            cursor: pointer;
+            &:hover::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                background-color: #00b58d;
+                height: 1px;
+                width: 100%;
+            }
+        }
+        .subMenu {
+            display: none;
+            min-width: max-content;
+            padding: 10px 0;
+            background-color: #fff;
+            position: absolute;
+            z-index: 1;
+            left: 0;
+            top: 54px;
+            width: 100%;
+            border: 1px solid #ccc;
+            box-shadow: 0 6px 12px rgb(0 0 0 / 18%) !important;
+
+            li {
+                list-style: none;
+                a {
+                    width: 100%;
+                    padding: 10px 18px;
+                    font-size: 14px;
+                    cursor: pointer;
+                    color: #141414;
+                    &:hover {
+                        color: #0072bf;
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+        &:hover {
+            .subMenu {
+                display: block;
+            }
+        }
+    }
+}

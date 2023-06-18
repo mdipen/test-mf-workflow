@@ -1,0 +1,77 @@
+.workflow-modal-dialog-wrap {
+    .workflow-modal-content-wrap {
+        border-radius: 4px;
+        border: 0;
+    }
+    .workflow-modal-header-wrap {
+        border: 0;
+        padding: 24px 24px 0;
+        align-items: flex-start;
+        .modal-title {
+            font-size: toRem(24);
+            color: $primary;
+            font-family: $font-semi-bold;
+        }
+        .btn-close {
+            height: 14px;
+            width: 14px;
+            position: relative;
+            margin-left: 10px;
+            margin-top: 1px;
+            &:focus,
+            &:active {
+                outline: 0;
+                box-shadow: none;
+            }
+        }
+
+        .btn-close:before,
+        .btn-close:after {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            background: #949494;
+        }
+
+        .btn-close:before {
+            left: 50%;
+            top: 50%;
+            width: 2px;
+            height: 18px;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .btn-close:after {
+            top: 50%;
+            height: 2px;
+            width: 18px;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+    }
+    .modal-body {
+        padding: 24px;
+        .modal-des {
+            font-size: toRem(14);
+            color: $black;
+            font-family: $font-regular;
+        }
+    }
+}
+
+.react-player-wrap {
+    width: 100%;
+}
+.task-desciption {
+    font-family: $font-regular;
+    font-size: toRem(14);
+    line-height: 24px;
+    color: $black;
+}
+.modal-body {
+    .form-text {
+        font-family: $font-regular;
+        font-size: toRem(12);
+        line-height: 24px;
+        color: #666666;
+    }
+}
